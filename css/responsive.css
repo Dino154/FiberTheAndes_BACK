@@ -1,0 +1,114 @@
+/* ===================================
+   Fiber the Andes - Responsive Styles
+   Archivo: css/responsive.css
+   =================================== */
+
+/* --- Tablets (max-width: 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .container { padding: 0 20px; }
+    
+    .hero h1 { font-size: 2.8rem; }
+    
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en Tablet */
+        gap: 1.5rem;
+    }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+    
+    /* Navbar Móvil */
+    .nav-menu {
+        position: fixed;
+        top: var(--navbar-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--navbar-height));
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s ease;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    
+    .nav-menu.active { left: 0; }
+    
+    .mobile-menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--neutral-dark);
+    }
+    
+    /* Hero */
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 3rem;
+    }
+    
+    .hero h1 { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1rem; }
+    
+    /* Grids a 1 columna */
+    .card-grid, 
+    .footer-content, 
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Ajustes Generales */
+    .section { padding: 3rem 0; }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    
+    /* WhatsApp más pequeño */
+    .whatsapp-float {
+        width: 50px; height: 50px;
+        font-size: 24px;
+        bottom: 20px; right: 20px;
+    }
+}
+
+/* --- Teléfonos Pequeños (max-width: 480px) --- */
+@media screen and (max-width: 480px) {
+    .hero h1 { font-size: 1.8rem; }
+    .section-title { font-size: 1.8rem; }
+}
+
+/* css/responsive.css */
+@media (max-width: 768px) {
+    /* Hacemos visible el botón SOLO en celular */
+    .mobile-menu-toggle {
+        display: block; 
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+    
+    .mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--white); /* Líneas blancas */
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+
+    /* Cuando bajamos el scroll, las líneas se vuelven oscuras */
+    .navbar.scrolled .mobile-menu-toggle span {
+        background-color: var(--text-main);
+    }
+}

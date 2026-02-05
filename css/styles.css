@@ -1,0 +1,496 @@
+/* ===================================
+   FIBER THE ANDES - ULTIMATE ENTERPRISE SYSTEM
+   Version: 5.0 (Final: Footer Fixed + Animations + Mobile Patch)
+   Archivo: css/styles.css
+   =================================== */
+
+/* --- 1. VARIABLES & CONFIGURACIÓN --- */
+:root {
+    /* Marca */
+    --primary-blue: #0066cc;
+    --primary-dark: #003d7a;
+    --secondary-cyan: #00b4d8;
+    
+    /* Textos */
+    --text-main: #1e293b;      /* Gris oscuro elegante */
+    --text-light: #64748b;     /* Gris medio */
+    --white: #ffffff;
+    
+    /* Fondos */
+    --bg-body: #f8faff;
+    
+    /* Animaciones */
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1); /* Efecto rebote suave */
+}
+
+/* --- 2. RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--text-main); font-weight: 800; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- 3. NAVBAR ANIMADO --- */
+.navbar {
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    height: 90px;
+    background: transparent; /* Transparente al inicio */
+    transition: all 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Animado */
+.nav-logo img {
+    height: 42px;
+    width: auto;
+    filter: brightness(0) invert(1); /* Logo BLANCO al inicio */
+    transition: 0.4s ease;
+    animation: bounceIn 0.8s var(--ease-out-back); 
+}
+
+/* Items del Menú (Animación Cascada) */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInDown 0.6s var(--ease-out-back) forwards;
+}
+
+/* Retrasos escalonados */
+.nav-menu li:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu li:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu li:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu li:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu li:nth-child(5) { animation-delay: 0.5s; }
+.nav-menu li:nth-child(6) { animation-delay: 0.6s; }
+
+/* Enlaces (Píldora) */
+.nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    transform: translateY(-2px);
+}
+
+/* Botón Contacto (Nav) */
+.nav-cta {
+    background: var(--white);
+    color: var(--primary-blue) !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-left: 15px;
+    transition: all 0.3s var(--ease-out-back);
+    display: inline-block;
+}
+
+.nav-cta:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Toggle Móvil (Oculto en PC) */
+.mobile-menu-toggle {
+    display: none; 
+}
+
+/* --- NAVBAR SCROLLED --- */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    height: 75px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.navbar.scrolled .nav-logo img { filter: none; transform: scale(0.9); }
+.navbar.scrolled .nav-link { color: var(--text-main); }
+.navbar.scrolled .nav-link:hover { color: var(--primary-blue); background: rgba(0, 102, 204, 0.05); }
+
+.navbar.scrolled .nav-cta {
+    background: var(--primary-blue);
+    color: var(--white) !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+/* --- 4. HERO SECTION --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('../recursos/Fondoincio.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(2,6,23,0.85) 0%, rgba(15,23,42,0.6) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative; z-index: 2;
+    padding: 0 20px;
+    max-width: 1000px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: zoomOut 1s var(--ease-out-back);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s 0.3s forwards; opacity: 0;
+}
+
+/* --- 5. COMPONENTES GENERALES --- */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 6rem 0; }
+.section-dark { background: #0f172a; color: white; position: relative; overflow: hidden; }
+.section-light { background: var(--bg-body); }
+
+/* Centrado de Secciones */
+.container.text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #0066cc, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.section-header { text-align: center; margin-bottom: 4rem; }
+
+.section-description {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: inherit; 
+    opacity: 0.9;
+}
+
+/* Grid Animado */
+.card-grid, .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card, .feature-box {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover, .feature-box:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 102, 204, 0.15);
+    border-color: rgba(0, 180, 216, 0.3);
+}
+
+.card-icon, .feature-icon {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.card:hover .card-icon {
+    transform: rotateY(360deg);
+    color: var(--secondary-cyan);
+}
+
+/* --- 6. BOTONES --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s 0.5s forwards; 
+    opacity: 0;
+}
+
+.btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0066cc 0%, #00d4ff 100%);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 102, 204, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-secondary, .btn-outline {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff !important;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover, .btn-outline:hover {
+    background: #ffffff;
+    color: #0066cc !important;
+    border-color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   FOOTER "IMPACTO" (Logo Grande + Iconos Neón)
+   ========================================= */
+
+.footer {
+    background: #020617; /* Fondo ultra oscuro */
+    color: #94a3b8;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- LOGO EMPRESA (MEJORADO) --- */
+.footer-logo {
+    height: 60px; /* Más grande (antes 45px) */
+    width: auto;
+    margin-bottom: 1.5rem;
+    display: block;
+    /* Si usas la imagen Fiber_Blanco.png, NO necesitas filtro. 
+       Si usas la Azul, este filtro la vuelve blanca brillante. */
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.3)); 
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05); /* Efecto zoom suave al pasar el mouse */
+}
+
+/* --- REDES SOCIALES (BOTONES FLOTANTES) --- */
+.social-links {
+    display: flex;
+    gap: 15px; /* Más espacio entre iconos */
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 45px; /* Más grandes */
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08); /* Fondo un poco más visible */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important; /* Fuerza quitar subrayado */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Iconos dentro del círculo */
+.social-link i {
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+/* Efecto HOVER (Impacto) */
+.social-link:hover {
+    background: var(--primary-blue); /* Se vuelve azul corporativo */
+    border-color: var(--secondary-cyan);
+    transform: translateY(-5px) scale(1.1); /* Sube y crece */
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); /* RESPLANDOR NEÓN */
+}
+
+/* --- CONTACTO (ICONOS CON IMPACTO) --- */
+.footer-section p {
+    display: flex;
+    align-items: center; /* Centrado vertical perfecto */
+    gap: 15px;
+    margin-bottom: 1.2rem;
+    color: #cbd5e1; /* Texto más claro para leer mejor */
+    font-weight: 500;
+}
+
+.footer-section p i {
+    font-size: 1.4rem; /* Iconos más grandes */
+    color: var(--secondary-cyan); /* Color CIAN ELÉCTRICO (Impacto) */
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.4); /* Brillo alrededor del icono */
+    min-width: 25px;
+    text-align: center;
+}
+
+/* Efecto hover en el texto de contacto */
+.footer-section p:hover i {
+    color: #ffffff;
+    transform: scale(1.2); /* El icono crece al pasar el mouse por el texto */
+    transition: 0.3s;
+}
+
+/* --- Resto de Estructura (No cambiar) --- */
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer-section { display: flex; flex-direction: column; }
+
+.footer h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+    font-weight: 800; /* Más grueso */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--secondary-cyan), transparent); /* Línea moderna */
+}
+
+.footer-section a {
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 0.8rem;
+    transition: 0.3s;
+    display: block;
+}
+
+.footer-section a:hover {
+    color: var(--white);
+    transform: translateX(8px); /* Desplazamiento más notorio */
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+.footer-bottom {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.5);
+}
+/* --- 8. UTILITIES & ANIMATIONS --- */
+@keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zoomOut { from { opacity: 0; transform: scale(1.2); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 20px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+.fade-in-up { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 60px; height: 60px;
+    background: #25D366; color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 2000;
+    animation: pulse 2s infinite;
+}
+
+.logos-grid img, .carousel-track img {
+    filter: grayscale(100%); opacity: 0.6; transition: 0.4s;
+}
+.logos-grid img:hover, .carousel-track img:hover {
+    filter: none; opacity: 1; transform: scale(1.1);
+}
